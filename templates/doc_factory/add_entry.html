@@ -1,0 +1,43 @@
+{% extends 'doc_factory/wrapper.html' %}
+
+  {% block content %}
+    <div class="container-fluid">
+      <div class="row header">
+        <div class="col">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'index' %}">Главная</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'add_entry' %}">Добавить ТЗ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Выгрузка документов</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-3">
+          <form enctype="multipart/form-data" class="" action="{% url 'add_entry' %}" method="post">
+          {% csrf_token %}
+            {{ form.non_field_errors }}
+            <table>
+              {{ form.file.errors }}
+              {{form.file.label_tag }}
+              {{ form.file }}
+            </table>
+            <input type="submit" value="Добавить ТЗ в работу"/>
+          </form>
+        </div>
+      </div>
+
+      <div class="row footer">
+        <div class="col">
+
+        </div>
+      </div>
+
+    </div>
+  {% endblock %}
